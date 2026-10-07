@@ -43,7 +43,7 @@ body {
     display: flex;
 }
 
-/* Background */
+/* ================= BACKGROUND ================= */
 
 .page::before {
     content: "";
@@ -79,7 +79,7 @@ body {
     z-index: -1;
 }
 
-/* ================= CONTENT AREA ================= */
+/* ================= CONTENT ================= */
 
 .content {
     width: min(900px, 100%);
@@ -188,8 +188,6 @@ p {
     z-index: 10;
 }
 
-/* Ground shadow */
-
 .gift-shadow {
     position: absolute;
 
@@ -204,8 +202,6 @@ p {
 
     filter: blur(7px);
 }
-
-/* Gift */
 
 .gift {
     position: relative;
@@ -227,8 +223,6 @@ p {
 .gift:hover {
     transform: scale(1.05);
 }
-
-/* Main box */
 
 .gift-box {
     position: absolute;
@@ -261,8 +255,6 @@ p {
         inset 0 -8px 15px rgba(0,0,0,0.25);
 }
 
-/* Box top edge */
-
 .gift-box::before {
     content: "";
 
@@ -276,8 +268,6 @@ p {
 
     background: rgba(255,255,255,0.18);
 }
-
-/* Vertical golden ribbon */
 
 .gift-ribbon {
     position: absolute;
@@ -298,8 +288,6 @@ p {
 
     z-index: 3;
 }
-
-/* Lid */
 
 .gift-lid {
     position: absolute;
@@ -334,8 +322,6 @@ p {
         top 0.9s ease;
 }
 
-/* Golden ribbon across lid */
-
 .gift-lid::after {
     content: "";
 
@@ -356,8 +342,6 @@ p {
         );
 }
 
-/* Bow */
-
 .bow {
     position: absolute;
 
@@ -376,8 +360,6 @@ p {
         opacity 0.5s ease;
 }
 
-/* Open animation */
-
 .gift.open .gift-lid {
     transform:
         translateY(-75px)
@@ -393,9 +375,7 @@ p {
     opacity: 0;
 }
 
-/* ================================================= */
-/* ITEMS COMING OUT OF GIFT */
-/* ================================================= */
+/* ================= GIFT SURPRISE ================= */
 
 .surprise {
     position: absolute;
@@ -581,7 +561,7 @@ button:disabled {
     }
 }
 
-/* ================= NEW CAKE CUTTING ================= */
+/* ================= CAKE CUTTING ================= */
 
 .cake-cut-stage {
     position: relative;
@@ -596,8 +576,6 @@ button:disabled {
     top: 35px;
     transform: translateX(-50%);
 }
-
-/* Knife */
 
 .cake-knife {
     position: absolute;
@@ -665,42 +643,35 @@ button:disabled {
     }
 }
 
-/* ================= ACTUAL CAKE SPLIT ================= */
+/* ================= CAKE SPLIT ================= */
 
 .cake.cake-split {
-    animation: cakeSplit 1.2s ease forwards;
+    animation: cakeSplit 1s ease forwards;
 }
 
 @keyframes cakeSplit {
 
     0% {
-        transform:
-            translateX(-50%)
-            scale(1);
-    }
-
-    30% {
-        transform:
-            translateX(-50%)
-            scale(1.08);
+        transform: translateX(-50%) scale(1);
     }
 
     100% {
-        transform:
-            translateX(-50%)
-            scale(0.92);
-        opacity: 0.15;
+        transform: translateX(-50%) scale(0.25);
+        opacity: 0;
     }
 }
 
 .cake-piece {
     position: fixed;
-    z-index: 9998;
+
+    z-index: 205;
+
     font-size: 55px;
+
     pointer-events: none;
 
     animation:
-        cakePieceFly 1.4s ease-out forwards;
+        cakePieceFly 1.2s ease-out forwards;
 }
 
 @keyframes cakePieceFly {
@@ -708,23 +679,21 @@ button:disabled {
     0% {
         transform:
             translate(0,0)
-            rotate(0deg)
-            scale(1);
+            rotate(0deg);
 
         opacity: 1;
     }
 
     100% {
         transform:
-            translate(var(--x),var(--y))
-            rotate(var(--r))
-            scale(0.5);
+            translate(var(--x), var(--y))
+            rotate(180deg);
 
         opacity: 0;
     }
 }
 
-/* ================= BALLOON BURST ================= */
+/* ================= BALLOONS ================= */
 
 .burst-balloon {
     position: fixed;
@@ -772,7 +741,7 @@ button:disabled {
     }
 }
 
-/* ================= DIWALI CRACKERS ================= */
+/* ================= 5 CRACKERS ================= */
 
 .cracker-burst {
     position: fixed;
@@ -859,56 +828,44 @@ button:disabled {
     }
 }
 
-/* ================= ROCKETS ================= */
+/* ================= 5 ROCKETS ================= */
 
 .rocket {
     position: fixed;
 
-    z-index: 202;
+    bottom: -70px;
 
-    font-size: 42px;
+    z-index: 210;
+
+    font-size: 38px;
 
     pointer-events: none;
 
     animation:
-        rocketFly 1.4s ease-out forwards;
+        rocketFly 1.2s ease-out forwards;
 }
 
 @keyframes rocketFly {
 
     0% {
-        transform:
-            translateY(100vh)
-            rotate(-35deg);
-
-        opacity: 1;
-    }
-
-    70% {
-        transform:
-            translateY(-30vh)
-            rotate(-35deg);
-
+        transform: translateY(0);
         opacity: 1;
     }
 
     100% {
-        transform:
-            translateY(-45vh)
-            rotate(-35deg);
-
-        opacity: 0;
+        transform: translateY(-72vh);
+        opacity: 1;
     }
 }
 
 .rocket-explosion {
     position: fixed;
 
-    z-index: 203;
-
-    font-size: 60px;
+    z-index: 211;
 
     pointer-events: none;
+
+    font-size: 55px;
 
     animation:
         rocketExplosion 0.9s ease-out forwards;
@@ -917,17 +874,17 @@ button:disabled {
 @keyframes rocketExplosion {
 
     0% {
-        transform: scale(.2);
-        opacity: 1;
+        transform: scale(0.2);
+        opacity: 0;
     }
 
-    60% {
-        transform: scale(1.6);
+    30% {
+        transform: scale(1.4);
         opacity: 1;
     }
 
     100% {
-        transform: scale(2.4);
+        transform: scale(2.3);
         opacity: 0;
     }
 }
@@ -1058,6 +1015,14 @@ button:disabled {
     p {
         font-size: 16px;
     }
+
+    .cake {
+        font-size: 90px;
+    }
+
+    .cake-knife {
+        font-size: 55px;
+    }
 }
 
 </style>
@@ -1081,8 +1046,6 @@ button:disabled {
 Tanuja Didi ❤️ Riya Didi
 </div>
 
-<!-- PHOTO -->
-
 <div class="photo-frame">
 
 <img
@@ -1097,8 +1060,6 @@ alt="Special sister photo"
 Something very special is waiting for you! ✨
 </p>
 
-<!-- GIFT -->
-
 <div class="gift-area">
 
 <div class="gift-shadow"></div>
@@ -1109,29 +1070,19 @@ id="gift"
 onclick="openGift()"
 >
 
-<!-- ITEMS -->
-
 <div class="surprise s1">🎂</div>
 <div class="surprise s2">💐</div>
 <div class="surprise s3">🎈</div>
 <div class="surprise s4">✨</div>
 <div class="surprise s5">❤️</div>
 
-<!-- BOW -->
-
 <div class="bow">
 🎀
 </div>
 
-<!-- LID -->
-
 <div class="gift-lid"></div>
 
-<!-- BOX -->
-
 <div class="gift-box"></div>
-
-<!-- RIBBON -->
 
 <div class="gift-ribbon"></div>
 
@@ -1142,8 +1093,6 @@ onclick="openGift()"
 <button onclick="openGift()">
 🎁 OPEN THE GIFT
 </button>
-
-<!-- MESSAGE -->
 
 <div
 class="message hidden"
@@ -1163,8 +1112,6 @@ happiness, laughter and beautiful memories.
 
 </div>
 
-<!-- NEXT -->
-
 <button onclick="goToPage(2)">
 NEXT ➜
 </button>
@@ -1181,6 +1128,7 @@ NEXT ➜
 
 </section>
 
+
 <!-- ================================================= -->
 <!-- PAGE 2 -->
 <!-- ================================================= -->
@@ -1191,7 +1139,7 @@ NEXT ➜
 
 <div class="cake-cut-stage">
 
-<div class="cake">
+<div class="cake" id="cake">
 🎂
 </div>
 
@@ -1253,6 +1201,7 @@ and wonderful memories! 💐
 <button
 id="cakeNextButton"
 onclick="goToPage(3)"
+style="display:none;"
 >
 NEXT ➜
 </button>
@@ -1268,6 +1217,7 @@ NEXT ➜
 </div>
 
 </section>
+
 
 <!-- ================================================= -->
 <!-- PAGE 3 -->
@@ -1345,6 +1295,7 @@ beautiful Diwali!
 
 </section>
 
+
 <script>
 
 /* ================= PAGE CHANGE ================= */
@@ -1365,6 +1316,7 @@ function goToPage(number) {
 
 }
 
+
 /* ================= GIFT ================= */
 
 function openGift() {
@@ -1381,6 +1333,7 @@ function openGift() {
 
     createConfetti(35);
 }
+
 
 /* ================= FIRST CAKE CUT ================= */
 
@@ -1416,6 +1369,7 @@ function cutCakeOne() {
     }, 900);
 }
 
+
 /* ================= SECOND CAKE CUT ================= */
 
 function cutCakeTwo() {
@@ -1446,86 +1400,149 @@ function cutCakeTwo() {
     instruction.innerHTML =
         "🎉 TWO CUTS COMPLETE! GET READY FOR THE SURPRISE! 🎉";
 
-    /* 5 CRACKERS */
 
-    setTimeout(function() {
-        createCracker(15, 25);
-    }, 700);
-
-    setTimeout(function() {
-        createCracker(32, 18);
-    }, 900);
-
-    setTimeout(function() {
-        createCracker(50, 25);
-    }, 1100);
-
-    setTimeout(function() {
-        createCracker(68, 18);
-    }, 1300);
-
-    setTimeout(function() {
-        createCracker(85, 27);
-    }, 1500);
-
-    /* BALLOONS */
-
-    setTimeout(function() {
-        balloonBurst();
-    }, 1700);
-
-    /* 5 ROCKETS */
-
-    setTimeout(function() {
-        launchRocket(12);
-    }, 1900);
-
-    setTimeout(function() {
-        launchRocket(30);
-    }, 2100);
-
-    setTimeout(function() {
-        launchRocket(50);
-    }, 2300);
-
-    setTimeout(function() {
-        launchRocket(70);
-    }, 2500);
-
-    setTimeout(function() {
-        launchRocket(88);
-    }, 2700);
-
-    /* ACTUAL CAKE CUT */
+    /* ================= CAKE SPLIT ================= */
 
     setTimeout(function() {
 
         const cake =
-        document.querySelector(".cake");
+        document.getElementById("cake");
 
         cake.classList.add("cake-split");
 
         createCakePieces();
 
         instruction.innerHTML =
-            "🎂✨ THE CAKE IS CUT! ✨🎂";
+            "🎂✨ THE CAKE IS SPLIT! ✨🎂";
 
-        createConfetti(60);
+    }, 1000);
 
-    }, 4100);
 
-    /* MESSAGE */
+    /* ================= EXACTLY 5 CRACKERS ================= */
+
+    setTimeout(function() {
+        createCracker(15, 25);
+    }, 2200);
+
+    setTimeout(function() {
+        createCracker(32, 18);
+    }, 2400);
+
+    setTimeout(function() {
+        createCracker(50, 25);
+    }, 2600);
+
+    setTimeout(function() {
+        createCracker(68, 18);
+    }, 2800);
+
+    setTimeout(function() {
+        createCracker(85, 27);
+    }, 3000);
+
+
+    /* ================= BALLOONS ================= */
 
     setTimeout(function() {
 
-        createConfetti(70);
+        balloonBurst();
+
+    }, 3200);
+
+
+    /* ================= EXACTLY 5 ROCKETS ================= */
+
+    setTimeout(function() {
+        launchRocket(12);
+    }, 3500);
+
+    setTimeout(function() {
+        launchRocket(30);
+    }, 3900);
+
+    setTimeout(function() {
+        launchRocket(50);
+    }, 4300);
+
+    setTimeout(function() {
+        launchRocket(70);
+    }, 4700);
+
+    setTimeout(function() {
+        launchRocket(88);
+    }, 5100);
+
+
+    /* ================= FINAL MESSAGE ================= */
+
+    setTimeout(function() {
+
+        createConfetti(80);
 
         message.classList.add("show");
 
         next.style.display = "inline-block";
 
-    }, 4900);
+        instruction.innerHTML =
+            "🎉🎂 HAPPY BIRTHDAY! 🎂🎉";
+
+    }, 6500);
 }
+
+
+/* ================= CAKE PIECES ================= */
+
+function createCakePieces() {
+
+    const positions = [
+
+        [-120, -100],
+        [-70, -130],
+        [70, -130],
+        [120, -100],
+        [-100, 80],
+        [100, 80]
+
+    ];
+
+    positions.forEach(function(pos) {
+
+        const piece =
+        document.createElement("div");
+
+        piece.className =
+        "cake-piece";
+
+        piece.textContent =
+        "🍰";
+
+        piece.style.left =
+        "50%";
+
+        piece.style.top =
+        "30%";
+
+        piece.style.setProperty(
+            "--x",
+            pos[0] + "px"
+        );
+
+        piece.style.setProperty(
+            "--y",
+            pos[1] + "px"
+        );
+
+        document.body.appendChild(piece);
+
+        setTimeout(function() {
+
+            piece.remove();
+
+        }, 1300);
+
+    });
+}
+
 
 /* ================= BALLOON BURST ================= */
 
@@ -1541,7 +1558,8 @@ function balloonBurst() {
             balloon.className =
             "burst-balloon";
 
-            balloon.textContent = "🎈";
+            balloon.textContent =
+            "🎈";
 
             balloon.style.left =
                 (5 + Math.random() * 90) + "vw";
@@ -1555,10 +1573,13 @@ function balloonBurst() {
             }, 3000);
 
         }, i * 100);
+
     }
+
 }
 
-/* ================= CRACKER PARTICLES ================= */
+
+/* ================= 5 DIWALI CRACKERS ================= */
 
 function createCracker(x, y) {
 
@@ -1574,13 +1595,17 @@ function createCracker(x, y) {
     burst.style.top =
         y + "vh";
 
+
     const sparkColors = [
+
         "#ffd700",
         "#ff4d6d",
         "#00e5ff",
         "#7cff00",
         "#ff66ff"
+
     ];
+
 
     for (let i = 0; i < 24; i++) {
 
@@ -1604,9 +1629,11 @@ function createCracker(x, y) {
             ];
 
         burst.appendChild(spark);
+
     }
 
     document.body.appendChild(burst);
+
 
     const flash =
     document.createElement("div");
@@ -1625,15 +1652,20 @@ function createCracker(x, y) {
 
     document.body.appendChild(flash);
 
+
     setTimeout(function() {
 
         burst.remove();
+
         flash.remove();
 
     }, 1600);
+
 }
 
-/* ================= ROCKETS ================= */
+
+/* ================= ROCKET ================= */
+/* Each rocket flies up and bursts exactly ONCE */
 
 function launchRocket(x) {
 
@@ -1647,99 +1679,49 @@ function launchRocket(x) {
     "🚀";
 
     rocket.style.left =
-        x + "%";
-
-    rocket.style.bottom =
-        "-60px";
+        x + "vw";
 
     document.body.appendChild(rocket);
 
-    setTimeout(function() {
 
-        const rect =
-        rocket.getBoundingClientRect();
+    rocket.addEventListener(
+        "animationend",
+        function() {
 
-        const explosion =
-        document.createElement("div");
+            const rect =
+            rocket.getBoundingClientRect();
 
-        explosion.className =
-        "rocket-explosion";
+            const explosion =
+            document.createElement("div");
 
-        explosion.textContent =
-        "🎆✨💥";
+            explosion.className =
+            "rocket-explosion";
 
-        explosion.style.left =
-            (rect.left - 10) + "px";
+            explosion.textContent =
+            "🎆💥✨";
 
-        explosion.style.top =
-            (rect.top - 10) + "px";
+            explosion.style.left =
+                rect.left + "px";
 
-        document.body.appendChild(explosion);
+            explosion.style.top =
+                rect.top + "px";
 
-        setTimeout(function() {
-            explosion.remove();
-        }, 1000);
+            document.body.appendChild(explosion);
 
-    }, 950);
+            rocket.remove();
 
-    setTimeout(function() {
-        rocket.remove();
-    }, 1500);
+
+            setTimeout(function() {
+
+                explosion.remove();
+
+            }, 900);
+
+        },
+        { once: true }
+    );
 }
 
-/* ================= CAKE PIECES ================= */
-
-function createCakePieces() {
-
-    const positions = [
-        ["-120px", "-80px", "-25deg"],
-        ["120px", "-90px", "25deg"],
-        ["-160px", "30px", "-40deg"],
-        ["160px", "40px", "40deg"],
-        ["0px", "-130px", "15deg"],
-        ["-80px", "100px", "-30deg"],
-        ["80px", "100px", "30deg"]
-    ];
-
-    positions.forEach(function(pos) {
-
-        const piece =
-        document.createElement("div");
-
-        piece.className =
-        "cake-piece";
-
-        piece.innerHTML =
-        "🍰";
-
-        piece.style.left =
-        "50%";
-
-        piece.style.top =
-        "42%";
-
-        piece.style.setProperty(
-            "--x",
-            pos[0]
-        );
-
-        piece.style.setProperty(
-            "--y",
-            pos[1]
-        );
-
-        piece.style.setProperty(
-            "--r",
-            pos[2]
-        );
-
-        document.body.appendChild(piece);
-
-        setTimeout(function() {
-            piece.remove();
-        }, 1500);
-    });
-}
 
 /* ================= LETTER ================= */
 
@@ -1753,6 +1735,7 @@ function openLetter() {
     createConfetti(40);
 }
 
+
 /* ================= FINAL ================= */
 
 function grandCelebration() {
@@ -1761,11 +1744,13 @@ function grandCelebration() {
 
 }
 
+
 /* ================= CONFETTI ================= */
 
 function createConfetti(amount) {
 
     const symbols = [
+
         "✨",
         "💖",
         "🎉",
@@ -1774,7 +1759,9 @@ function createConfetti(amount) {
         "🎁",
         "⭐",
         "💐"
+
     ];
+
 
     for (
         let i = 0;
@@ -1797,13 +1784,13 @@ function createConfetti(amount) {
         ];
 
         item.style.left =
-            Math.random() * 100 + "vw";
+        Math.random() * 100 + "vw";
 
         item.style.fontSize =
-            (15 + Math.random() * 18) + "px";
+        (15 + Math.random() * 18) + "px";
 
         item.style.animationDuration =
-            (2.5 + Math.random() * 3) + "s";
+        (2.5 + Math.random() * 3) + "s";
 
         document.body.appendChild(item);
 
@@ -1815,7 +1802,9 @@ function createConfetti(amount) {
             },
             6000
         );
+
     }
+
 }
 
 </script>
