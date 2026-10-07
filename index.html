@@ -1,210 +1,923 @@
-/* ================= CAKE CUT + CRACKERS ================= */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.cake-cut-stage {
-    position: relative;
-    width: 100%;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+<title>Tanuja Didi & Riya Didi</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
 }
 
-.cake {
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    color: white;
+}
+
+body {
+    background: #16001f;
+}
+
+/* ================= PAGE ================= */
+
+.page {
+    position: fixed;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.page.active {
+    display: flex;
+}
+
+/* Background */
+
+.page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(20, 0, 35, 0.38),
+            rgba(20, 0, 35, 0.72)
+        ),
+        url("background.jpg.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -2;
+}
+
+.page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 20%,
+            rgba(0,0,0,0.28) 100%
+        );
+
+    z-index: -1;
+}
+
+/* ================= CONTENT AREA ================= */
+
+.content {
+    width: min(900px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
     z-index: 5;
-    font-size: 130px;
-    animation: cakeFloat 2s infinite ease-in-out;
+    padding-bottom: 60px;
+}
+
+/* ================= HEADINGS ================= */
+
+h1 {
+    font-size: clamp(30px, 6vw, 65px);
+    color: #ffd84d;
+
+    text-shadow:
+        0 0 10px #ff9d00,
+        0 0 25px #ff6500;
+
+    margin: 5px 0 8px;
+}
+
+h2 {
+    font-size: clamp(22px, 4vw, 38px);
+    color: #fff0a3;
+    margin: 8px 0 12px;
+}
+
+p {
+    font-size: clamp(17px, 2.4vw, 24px);
+    line-height: 1.45;
+    max-width: 780px;
+    margin: 7px auto;
+
+    text-shadow:
+        0 2px 5px #000;
+}
+
+.names {
+    font-size: clamp(24px, 4.5vw, 48px);
+    font-weight: bold;
+    color: #fff2a8;
+
+    text-shadow:
+        0 0 10px #ffae00,
+        0 0 25px #ff6500;
+
+    margin-bottom: 10px;
+}
+
+/* ================= PHOTO ================= */
+
+.photo-frame {
+    padding: 8px;
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd700,
+            #fff6a5,
+            #ffb000,
+            #ffd700
+        );
+
+    box-shadow:
+        0 0 18px #ffd700,
+        0 0 40px rgba(255,170,0,0.7);
+
+    margin: 5px auto 8px;
+}
+
+.sister-photo {
+    display: block;
+
+    width: min(230px, 52vw);
+    height: min(230px, 52vw);
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    border: 4px solid #541500;
+
+    background: white;
+}
+
+/* ================================================= */
+/* REALISTIC GIFT BOX */
+/* ================================================= */
+
+.gift-area {
+    position: relative;
+
+    width: 300px;
+    height: 245px;
+
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    z-index: 10;
+}
+
+/* Ground shadow */
+
+.gift-shadow {
+    position: absolute;
+
+    width: 180px;
+    height: 25px;
+
+    bottom: 10px;
+
+    background: rgba(0,0,0,0.45);
+
+    border-radius: 50%;
+
+    filter: blur(7px);
+}
+
+/* Gift */
+
+.gift {
+    position: relative;
+
+    width: 155px;
+    height: 125px;
+
+    cursor: pointer;
+
+    filter:
+        drop-shadow(0 12px 10px rgba(0,0,0,0.35));
+
+    transition:
+        transform 0.3s ease;
+
+    z-index: 10;
+}
+
+.gift:hover {
+    transform: scale(1.05);
+}
+
+/* Main box */
+
+.gift-box {
+    position: absolute;
+
+    left: 5px;
+    bottom: 15px;
+
+    width: 145px;
+    height: 100px;
+
+    border-radius: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8d001e 0%,
+            #d20b36 12%,
+            #f02d50 43%,
+            #b9002b 44%,
+            #b9002b 56%,
+            #f02d50 57%,
+            #d20b36 88%,
+            #8d001e 100%
+        );
+
+    border: 2px solid #710018;
+
+    box-shadow:
+        inset 0 5px 10px rgba(255,255,255,0.2),
+        inset 0 -8px 15px rgba(0,0,0,0.25);
+}
+
+/* Box top edge */
+
+.gift-box::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 8px;
+
+    background: rgba(255,255,255,0.18);
+}
+
+/* Vertical golden ribbon */
+
+.gift-ribbon {
+    position: absolute;
+
+    left: 65px;
+    bottom: 15px;
+
+    width: 25px;
+    height: 100px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d99c00,
+            #ffe45a,
+            #c98d00
+        );
+
+    z-index: 3;
+}
+
+/* Lid */
+
+.gift-lid {
+    position: absolute;
+
+    left: -4px;
+    top: 12px;
+
+    width: 163px;
+    height: 32px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #9c0020,
+            #ed2450,
+            #ff4165,
+            #d40b35,
+            #8d001c
+        );
+
+    border: 2px solid #710018;
+
+    box-shadow:
+        0 4px 8px rgba(0,0,0,0.35);
+
+    z-index: 5;
+
+    transition:
+        transform 0.9s cubic-bezier(.2,.8,.2,1),
+        top 0.9s ease;
+}
+
+/* Golden ribbon across lid */
+
+.gift-lid::after {
+    content: "";
+
+    position: absolute;
+
+    left: 69px;
+    top: -2px;
+
+    width: 25px;
+    height: 32px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d99c00,
+            #ffe45a,
+            #c98d00
+        );
+}
+
+/* Bow */
+
+.bow {
+    position: absolute;
+
+    left: 50%;
+
+    top: -18px;
+
+    transform: translateX(-50%);
+
+    font-size: 50px;
+
+    z-index: 8;
+
+    transition:
+        transform 0.8s ease,
+        opacity 0.5s ease;
+}
+
+/* Open animation */
+
+.gift.open .gift-lid {
+    transform:
+        translateY(-75px)
+        rotate(-8deg);
+}
+
+.gift.open .bow {
+    transform:
+        translateX(-50%)
+        translateY(-70px)
+        scale(0.8);
+
+    opacity: 0;
+}
+
+/* ================================================= */
+/* ITEMS COMING OUT OF GIFT */
+/* ================================================= */
+
+.surprise {
+    position: absolute;
+
+    left: 50%;
+    top: 25px;
+
+    font-size: 35px;
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, 20px)
+        scale(0);
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+.gift.open .surprise {
+    animation:
+        burstOut 1.5s ease-out forwards;
+}
+
+.s1 {
+    --x: -100px;
+    --y: -100px;
+    animation-delay: 0.05s !important;
+}
+
+.s2 {
+    --x: 100px;
+    --y: -100px;
+    animation-delay: 0.15s !important;
+}
+
+.s3 {
+    --x: -125px;
+    --y: -20px;
+    animation-delay: 0.25s !important;
+}
+
+.s4 {
+    --x: 125px;
+    --y: -20px;
+    animation-delay: 0.35s !important;
+}
+
+.s5 {
+    --x: 0px;
+    --y: -125px;
+    animation-delay: 0.45s !important;
+}
+
+@keyframes burstOut {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, 30px)
+            scale(0);
+    }
+
+    35% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                var(--y)
+            )
+            scale(1);
+    }
+}
+
+/* ================= BUTTONS ================= */
+
+button {
+    border: none;
+
+    padding: 13px 28px;
+
+    margin: 7px;
+
+    border-radius: 35px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    color: #4b1600;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe45b,
+            #ff9d00
+        );
+
+    box-shadow:
+        0 0 15px rgba(255,190,0,0.8);
+
+    transition: 0.25s;
+
+    position: relative;
+
+    z-index: 30;
+}
+
+button:hover {
+    transform: scale(1.06);
+
+    box-shadow:
+        0 0 28px #ffd700;
+}
+
+button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* ================= MESSAGE ================= */
+
+.message {
+    max-width: 800px;
+
+    padding: 8px 15px;
+
+    position: relative;
+
+    z-index: 25;
+}
+
+.hidden {
+    display: none;
+}
+
+.hidden.show {
+    display: block;
+
+    animation:
+        appear 0.8s ease forwards;
+}
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ================= CAKE ================= */
+
+.cake {
+    font-size: 115px;
+
+    animation:
+        cakeFloat 2s ease-in-out infinite;
 }
 
 @keyframes cakeFloat {
+
     0%,100% {
         transform: translateY(0);
     }
+
     50% {
-        transform: translateY(-8px);
+        transform: translateY(-10px);
     }
+}
+
+/* ================= NEW CAKE CUTTING ================= */
+
+.cake-cut-stage {
+    position: relative;
+    width: min(420px, 90vw);
+    height: 220px;
+    margin: 5px auto 0;
+}
+
+.cake-cut-stage .cake {
+    position: absolute;
+    left: 50%;
+    top: 35px;
+    transform: translateX(-50%);
 }
 
 /* Knife */
+
 .cake-knife {
     position: absolute;
-    z-index: 10;
-    font-size: 75px;
-    top: 35px;
-    left: calc(50% + 55px);
-    transform: rotate(-25deg);
-    transition: none;
+    right: 10px;
+    top: 75px;
+
+    font-size: 70px;
+
+    z-index: 35;
+
+    transform: rotate(-35deg);
 }
 
 .cake-knife.cut1 {
-    animation: knifeCut1 0.8s ease-in-out;
+    animation: knifeCut1 0.9s ease-in-out;
 }
 
 .cake-knife.cut2 {
-    animation: knifeCut2 0.8s ease-in-out;
+    animation: knifeCut2 0.9s ease-in-out;
 }
 
 @keyframes knifeCut1 {
+
     0% {
-        transform: translate(100px,-80px) rotate(-25deg);
+        right: 10px;
+        transform: rotate(-35deg);
     }
-    50% {
-        transform: translate(-5px,20px) rotate(-55deg);
+
+    45% {
+        right: 150px;
+        transform: rotate(-5deg);
     }
+
+    70% {
+        right: 125px;
+        transform: rotate(-10deg);
+    }
+
     100% {
-        transform: translate(0,0) rotate(-25deg);
+        right: 10px;
+        transform: rotate(-35deg);
     }
 }
 
 @keyframes knifeCut2 {
+
     0% {
-        transform: translate(100px,-80px) rotate(-25deg);
+        right: 10px;
+        transform: rotate(-35deg);
     }
-    50% {
-        transform: translate(-10px,25px) rotate(-55deg);
+
+    45% {
+        right: 175px;
+        transform: rotate(5deg);
     }
+
+    70% {
+        right: 125px;
+        transform: rotate(-10deg);
+    }
+
     100% {
-        transform: translate(0,0) rotate(-25deg);
+        right: 10px;
+        transform: rotate(-35deg);
     }
 }
 
-/* Cake actually splits */
+/* ================= ACTUAL CAKE SPLIT ================= */
+
 .cake.cake-split {
     animation: cakeSplit 1.2s ease forwards;
 }
 
 @keyframes cakeSplit {
+
     0% {
-        transform: translateY(0) scale(1);
+        transform:
+            translateX(-50%)
+            scale(1);
     }
-    35% {
-        transform: translateY(0) scale(1.05);
+
+    30% {
+        transform:
+            translateX(-50%)
+            scale(1.08);
     }
+
     100% {
-        transform: translateY(8px) scale(0.95);
-        opacity: 0.85;
+        transform:
+            translateX(-50%)
+            scale(0.92);
+        opacity: 0.15;
     }
 }
 
-/* Cake pieces */
 .cake-piece {
     position: fixed;
     z-index: 9998;
     font-size: 55px;
     pointer-events: none;
-    animation: cakePieceFly 1.4s ease-out forwards;
+
+    animation:
+        cakePieceFly 1.4s ease-out forwards;
 }
 
 @keyframes cakePieceFly {
+
     0% {
-        transform: translate(0,0) rotate(0deg) scale(1);
+        transform:
+            translate(0,0)
+            rotate(0deg)
+            scale(1);
+
         opacity: 1;
     }
+
     100% {
-        transform: translate(var(--x),var(--y))
-                   rotate(var(--r))
-                   scale(0.5);
+        transform:
+            translate(var(--x),var(--y))
+            rotate(var(--r))
+            scale(0.5);
+
         opacity: 0;
     }
 }
 
-/* ================= 5 CRACKER BURSTS ================= */
+/* ================= BALLOON BURST ================= */
+
+.burst-balloon {
+    position: fixed;
+
+    bottom: -70px;
+
+    z-index: 190;
+
+    pointer-events: none;
+
+    font-size: 48px;
+
+    animation:
+        balloonBurst 2.5s ease-out forwards;
+}
+
+@keyframes balloonBurst {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    82% {
+        transform:
+            translateY(-80vh)
+            scale(1);
+
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-88vh)
+            scale(1.5);
+
+        opacity: 0;
+    }
+}
+
+/* ================= DIWALI CRACKERS ================= */
 
 .cracker-burst {
     position: fixed;
-    width: 10px;
-    height: 10px;
-    z-index: 9999;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    z-index: 200;
+
     pointer-events: none;
 }
 
 .cracker-spark {
     position: absolute;
-    width: 6px;
-    height: 30px;
-    border-radius: 50%;
-    background: white;
+
     left: 0;
     top: 0;
+
+    width: 6px;
+    height: 34px;
+
+    border-radius: 50%;
+
     transform-origin: 50% 100%;
-    animation: crackerSpark 1.3s ease-out forwards;
+
+    animation:
+        crackerSpark 1.15s ease-out forwards;
+
+    box-shadow:
+        0 0 12px #ffd700;
 }
 
 @keyframes crackerSpark {
+
     0% {
-        transform: rotate(var(--angle)) translateY(0) scale(1);
+        transform:
+            rotate(var(--angle))
+            translateY(0)
+            scale(1);
+
         opacity: 1;
     }
 
     100% {
-        transform: rotate(var(--angle)) translateY(130px) scale(0);
+        transform:
+            rotate(var(--angle))
+            translateY(-145px)
+            scale(.1);
+
         opacity: 0;
     }
 }
 
 .cracker-flash {
     position: fixed;
-    z-index: 9997;
+
+    z-index: 201;
+
     pointer-events: none;
-    font-size: 55px;
-    animation: crackerFlash 0.8s ease-out forwards;
+
+    font-size: 38px;
+
+    animation:
+        crackerFlash 1s ease-out forwards;
 }
 
 @keyframes crackerFlash {
+
     0% {
-        transform: scale(0.2);
-        opacity: 1;
+        transform: scale(.2);
+        opacity: 0;
     }
 
-    60% {
-        transform: scale(1.5);
+    30% {
+        transform: scale(1.35);
         opacity: 1;
     }
 
     100% {
-        transform: scale(2);
+        transform: scale(2.2);
         opacity: 0;
     }
 }
 
-/* ================= 5 ROCKETS ================= */
+/* ================= ROCKETS ================= */
 
 .rocket {
     position: fixed;
-    z-index: 9998;
+
+    z-index: 202;
+
     font-size: 42px;
+
     pointer-events: none;
-    animation: rocketFly 1.4s ease-out forwards;
+
+    animation:
+        rocketFly 1.4s ease-out forwards;
 }
 
 @keyframes rocketFly {
+
     0% {
-        transform: translateY(100vh) rotate(-35deg);
+        transform:
+            translateY(100vh)
+            rotate(-35deg);
+
         opacity: 1;
     }
 
     70% {
-        transform: translateY(-30vh) rotate(-35deg);
+        transform:
+            translateY(-30vh)
+            rotate(-35deg);
+
         opacity: 1;
     }
 
     100% {
-        transform: translateY(-45vh) rotate(-35deg);
+        transform:
+            translateY(-45vh)
+            rotate(-35deg);
+
         opacity: 0;
     }
 }
 
 .rocket-explosion {
     position: fixed;
-    z-index: 9999;
+
+    z-index: 203;
+
     font-size: 60px;
+
     pointer-events: none;
-    animation: rocketExplosion 0.9s ease-out forwards;
+
+    animation:
+        rocketExplosion 0.9s ease-out forwards;
 }
 
 @keyframes rocketExplosion {
+
     0% {
-        transform: scale(0.2);
+        transform: scale(.2);
         opacity: 1;
     }
 
@@ -218,3 +931,894 @@
         opacity: 0;
     }
 }
+
+/* ================= FINAL ================= */
+
+.final-symbol {
+    font-size: 100px;
+
+    animation:
+        glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.12);
+    }
+}
+
+/* ================= DIYAS ================= */
+
+.diyas {
+    position: absolute;
+
+    bottom: 8px;
+
+    left: 0;
+    right: 0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+    font-size: 28px;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+/* ================= CONFETTI ================= */
+
+.confetti {
+    position: fixed;
+
+    top: -20px;
+
+    z-index: 100;
+
+    pointer-events: none;
+
+    animation:
+        fall 4s linear forwards;
+}
+
+@keyframes fall {
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+/* ================= PAGE NUMBER ================= */
+
+.page-number {
+    position: absolute;
+
+    right: 15px;
+    bottom: 8px;
+
+    font-size: 12px;
+
+    opacity: 0.7;
+
+    z-index: 40;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px) {
+
+    .page {
+        padding: 12px;
+    }
+
+    .content {
+        padding-bottom: 45px;
+    }
+
+    .sister-photo {
+        width: 180px;
+        height: 180px;
+    }
+
+    .photo-frame {
+        margin-bottom: 4px;
+    }
+
+    .gift-area {
+        height: 205px;
+        transform: scale(0.88);
+        margin-top: -5px;
+        margin-bottom: -15px;
+    }
+
+    .gift {
+        transform-origin: bottom center;
+    }
+
+    .gift:hover {
+        transform: scale(0.93);
+    }
+
+    button {
+        font-size: 15px;
+        padding: 11px 21px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================================================= -->
+<!-- PAGE 1 -->
+<!-- ================================================= -->
+
+<section class="page active" id="page1">
+
+<div class="content">
+
+<h1>
+🎁 A SECRET SURPRISE 🎁
+</h1>
+
+<div class="names">
+Tanuja Didi ❤️ Riya Didi
+</div>
+
+<!-- PHOTO -->
+
+<div class="photo-frame">
+
+<img
+src="sister.jpg.jpg"
+class="sister-photo"
+alt="Special sister photo"
+>
+
+</div>
+
+<p>
+Something very special is waiting for you! ✨
+</p>
+
+<!-- GIFT -->
+
+<div class="gift-area">
+
+<div class="gift-shadow"></div>
+
+<div
+class="gift"
+id="gift"
+onclick="openGift()"
+>
+
+<!-- ITEMS -->
+
+<div class="surprise s1">🎂</div>
+<div class="surprise s2">💐</div>
+<div class="surprise s3">🎈</div>
+<div class="surprise s4">✨</div>
+<div class="surprise s5">❤️</div>
+
+<!-- BOW -->
+
+<div class="bow">
+🎀
+</div>
+
+<!-- LID -->
+
+<div class="gift-lid"></div>
+
+<!-- BOX -->
+
+<div class="gift-box"></div>
+
+<!-- RIBBON -->
+
+<div class="gift-ribbon"></div>
+
+</div>
+
+</div>
+
+<button onclick="openGift()">
+🎁 OPEN THE GIFT
+</button>
+
+<!-- MESSAGE -->
+
+<div
+class="message hidden"
+id="giftMessage"
+>
+
+<h2>
+🎉 SURPRISE! 🎉
+</h2>
+
+<p>
+Happy Birthday to two amazing sisters! ❤️
+<br>
+May your lives always be filled with
+happiness, laughter and beautiful memories.
+</p>
+
+</div>
+
+<!-- NEXT -->
+
+<button onclick="goToPage(2)">
+NEXT ➜
+</button>
+
+</div>
+
+<div class="diyas">
+🪔　　　　　　　　　　　🪔
+</div>
+
+<div class="page-number">
+1 / 3
+</div>
+
+</section>
+
+<!-- ================================================= -->
+<!-- PAGE 2 -->
+<!-- ================================================= -->
+
+<section class="page" id="page2">
+
+<div class="content">
+
+<div class="cake-cut-stage">
+
+<div class="cake">
+🎂
+</div>
+
+<div class="cake-knife" id="cakeKnife">
+🔪
+</div>
+
+</div>
+
+<h1>
+BIRTHDAY PARTY!
+</h1>
+
+<h2>
+🎂 Time to Cut the Cake 🎂
+</h2>
+
+<p id="cutInstruction">
+Today is a special celebration
+for two wonderful sisters! 💕
+</p>
+
+<button
+id="cut1Button"
+onclick="cutCakeOne()"
+>
+🔪 CUT 1
+</button>
+
+<button
+id="cut2Button"
+onclick="cutCakeTwo()"
+disabled
+>
+🔪 CUT 2
+</button>
+
+<div
+class="message hidden"
+id="cakeMessage"
+>
+
+<h2>
+🎉 HAPPY BIRTHDAY! 🎉
+</h2>
+
+<p>
+May your life be as sweet
+as this birthday cake!
+</p>
+
+<p>
+💐 Lots of love, happiness
+and wonderful memories! 💐
+</p>
+
+</div>
+
+<button
+id="cakeNextButton"
+onclick="goToPage(3)"
+>
+NEXT ➜
+</button>
+
+</div>
+
+<div class="diyas">
+🪔　　　　　　　　　　　🪔
+</div>
+
+<div class="page-number">
+2 / 3
+</div>
+
+</section>
+
+<!-- ================================================= -->
+<!-- PAGE 3 -->
+<!-- ================================================= -->
+
+<section class="page" id="page3">
+
+<div class="content">
+
+<div class="final-symbol">
+🪔
+</div>
+
+<h1>
+GRAND DIWALI FINALE ✨
+</h1>
+
+<h2>
+Happy Diwali & Happy Birthday! 🎂
+</h2>
+
+<p>
+Dear Tanuja Didi and Riya Didi,
+</p>
+
+<p>
+May this Diwali fill your lives
+with happiness, peace, success
+and lots of light. ✨
+</p>
+
+<p>
+May your birthday bring
+countless beautiful memories. ❤️
+</p>
+
+<button onclick="openLetter()">
+💌 OPEN THE LETTER
+</button>
+
+<div
+class="message hidden"
+id="letterMessage"
+>
+
+<h2>
+❤️ WITH LOTS OF LOVE ❤️
+</h2>
+
+<p>
+Wishing you both a wonderful
+birthday and a bright,
+beautiful Diwali!
+</p>
+
+<p>
+🎂 🎁 🪔 ✨ 💐 🎆
+</p>
+
+</div>
+
+<button onclick="grandCelebration()">
+🎆 FINAL CELEBRATION!
+</button>
+
+</div>
+
+<div class="diyas">
+🪔　　　　　　　　　　　🪔
+</div>
+
+<div class="page-number">
+3 / 3
+</div>
+
+</section>
+
+<script>
+
+/* ================= PAGE CHANGE ================= */
+
+function goToPage(number) {
+
+    document
+    .querySelectorAll(".page")
+    .forEach(function(page) {
+
+        page.classList.remove("active");
+
+    });
+
+    document
+    .getElementById("page" + number)
+    .classList.add("active");
+
+}
+
+/* ================= GIFT ================= */
+
+function openGift() {
+
+    const gift =
+    document.getElementById("gift");
+
+    const message =
+    document.getElementById("giftMessage");
+
+    gift.classList.add("open");
+
+    message.classList.add("show");
+
+    createConfetti(35);
+}
+
+/* ================= FIRST CAKE CUT ================= */
+
+function cutCakeOne() {
+
+    const knife =
+    document.getElementById("cakeKnife");
+
+    const cut1 =
+    document.getElementById("cut1Button");
+
+    const cut2 =
+    document.getElementById("cut2Button");
+
+    const instruction =
+    document.getElementById("cutInstruction");
+
+    knife.classList.remove("cut1");
+
+    void knife.offsetWidth;
+
+    knife.classList.add("cut1");
+
+    cut1.disabled = true;
+
+    instruction.innerHTML =
+        "✨ First cut done! Now make the second cut! ✨";
+
+    setTimeout(function() {
+
+        cut2.disabled = false;
+
+    }, 900);
+}
+
+/* ================= SECOND CAKE CUT ================= */
+
+function cutCakeTwo() {
+
+    const knife =
+    document.getElementById("cakeKnife");
+
+    const cut2 =
+    document.getElementById("cut2Button");
+
+    const message =
+    document.getElementById("cakeMessage");
+
+    const next =
+    document.getElementById("cakeNextButton");
+
+    const instruction =
+    document.getElementById("cutInstruction");
+
+    knife.classList.remove("cut2");
+
+    void knife.offsetWidth;
+
+    knife.classList.add("cut2");
+
+    cut2.disabled = true;
+
+    instruction.innerHTML =
+        "🎉 TWO CUTS COMPLETE! GET READY FOR THE SURPRISE! 🎉";
+
+    /* 5 CRACKERS */
+
+    setTimeout(function() {
+        createCracker(15, 25);
+    }, 700);
+
+    setTimeout(function() {
+        createCracker(32, 18);
+    }, 900);
+
+    setTimeout(function() {
+        createCracker(50, 25);
+    }, 1100);
+
+    setTimeout(function() {
+        createCracker(68, 18);
+    }, 1300);
+
+    setTimeout(function() {
+        createCracker(85, 27);
+    }, 1500);
+
+    /* BALLOONS */
+
+    setTimeout(function() {
+        balloonBurst();
+    }, 1700);
+
+    /* 5 ROCKETS */
+
+    setTimeout(function() {
+        launchRocket(12);
+    }, 1900);
+
+    setTimeout(function() {
+        launchRocket(30);
+    }, 2100);
+
+    setTimeout(function() {
+        launchRocket(50);
+    }, 2300);
+
+    setTimeout(function() {
+        launchRocket(70);
+    }, 2500);
+
+    setTimeout(function() {
+        launchRocket(88);
+    }, 2700);
+
+    /* ACTUAL CAKE CUT */
+
+    setTimeout(function() {
+
+        const cake =
+        document.querySelector(".cake");
+
+        cake.classList.add("cake-split");
+
+        createCakePieces();
+
+        instruction.innerHTML =
+            "🎂✨ THE CAKE IS CUT! ✨🎂";
+
+        createConfetti(60);
+
+    }, 4100);
+
+    /* MESSAGE */
+
+    setTimeout(function() {
+
+        createConfetti(70);
+
+        message.classList.add("show");
+
+        next.style.display = "inline-block";
+
+    }, 4900);
+}
+
+/* ================= BALLOON BURST ================= */
+
+function balloonBurst() {
+
+    for (let i = 0; i < 10; i++) {
+
+        setTimeout(function() {
+
+            const balloon =
+            document.createElement("div");
+
+            balloon.className =
+            "burst-balloon";
+
+            balloon.textContent = "🎈";
+
+            balloon.style.left =
+                (5 + Math.random() * 90) + "vw";
+
+            document.body.appendChild(balloon);
+
+            setTimeout(function() {
+
+                balloon.remove();
+
+            }, 3000);
+
+        }, i * 100);
+    }
+}
+
+/* ================= CRACKER PARTICLES ================= */
+
+function createCracker(x, y) {
+
+    const burst =
+    document.createElement("div");
+
+    burst.className =
+    "cracker-burst";
+
+    burst.style.left =
+        x + "vw";
+
+    burst.style.top =
+        y + "vh";
+
+    const sparkColors = [
+        "#ffd700",
+        "#ff4d6d",
+        "#00e5ff",
+        "#7cff00",
+        "#ff66ff"
+    ];
+
+    for (let i = 0; i < 24; i++) {
+
+        const spark =
+        document.createElement("div");
+
+        spark.className =
+        "cracker-spark";
+
+        spark.style.setProperty(
+            "--angle",
+            (i * 15) + "deg"
+        );
+
+        spark.style.background =
+            sparkColors[
+                Math.floor(
+                    Math.random() *
+                    sparkColors.length
+                )
+            ];
+
+        burst.appendChild(spark);
+    }
+
+    document.body.appendChild(burst);
+
+    const flash =
+    document.createElement("div");
+
+    flash.className =
+    "cracker-flash";
+
+    flash.textContent =
+    "🎆✨💥";
+
+    flash.style.left =
+        x + "vw";
+
+    flash.style.top =
+        y + "vh";
+
+    document.body.appendChild(flash);
+
+    setTimeout(function() {
+
+        burst.remove();
+        flash.remove();
+
+    }, 1600);
+}
+
+/* ================= ROCKETS ================= */
+
+function launchRocket(x) {
+
+    const rocket =
+    document.createElement("div");
+
+    rocket.className =
+    "rocket";
+
+    rocket.textContent =
+    "🚀";
+
+    rocket.style.left =
+        x + "%";
+
+    rocket.style.bottom =
+        "-60px";
+
+    document.body.appendChild(rocket);
+
+    setTimeout(function() {
+
+        const rect =
+        rocket.getBoundingClientRect();
+
+        const explosion =
+        document.createElement("div");
+
+        explosion.className =
+        "rocket-explosion";
+
+        explosion.textContent =
+        "🎆✨💥";
+
+        explosion.style.left =
+            (rect.left - 10) + "px";
+
+        explosion.style.top =
+            (rect.top - 10) + "px";
+
+        document.body.appendChild(explosion);
+
+        setTimeout(function() {
+            explosion.remove();
+        }, 1000);
+
+    }, 950);
+
+    setTimeout(function() {
+        rocket.remove();
+    }, 1500);
+}
+
+/* ================= CAKE PIECES ================= */
+
+function createCakePieces() {
+
+    const positions = [
+        ["-120px", "-80px", "-25deg"],
+        ["120px", "-90px", "25deg"],
+        ["-160px", "30px", "-40deg"],
+        ["160px", "40px", "40deg"],
+        ["0px", "-130px", "15deg"],
+        ["-80px", "100px", "-30deg"],
+        ["80px", "100px", "30deg"]
+    ];
+
+    positions.forEach(function(pos) {
+
+        const piece =
+        document.createElement("div");
+
+        piece.className =
+        "cake-piece";
+
+        piece.innerHTML =
+        "🍰";
+
+        piece.style.left =
+        "50%";
+
+        piece.style.top =
+        "42%";
+
+        piece.style.setProperty(
+            "--x",
+            pos[0]
+        );
+
+        piece.style.setProperty(
+            "--y",
+            pos[1]
+        );
+
+        piece.style.setProperty(
+            "--r",
+            pos[2]
+        );
+
+        document.body.appendChild(piece);
+
+        setTimeout(function() {
+            piece.remove();
+        }, 1500);
+    });
+}
+
+/* ================= LETTER ================= */
+
+function openLetter() {
+
+    const message =
+    document.getElementById("letterMessage");
+
+    message.classList.add("show");
+
+    createConfetti(40);
+}
+
+/* ================= FINAL ================= */
+
+function grandCelebration() {
+
+    createConfetti(120);
+
+}
+
+/* ================= CONFETTI ================= */
+
+function createConfetti(amount) {
+
+    const symbols = [
+        "✨",
+        "💖",
+        "🎉",
+        "🌸",
+        "🎈",
+        "🎁",
+        "⭐",
+        "💐"
+    ];
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        const item =
+        document.createElement("div");
+
+        item.className =
+        "confetti";
+
+        item.textContent =
+        symbols[
+            Math.floor(
+                Math.random() *
+                symbols.length
+            )
+        ];
+
+        item.style.left =
+            Math.random() * 100 + "vw";
+
+        item.style.fontSize =
+            (15 + Math.random() * 18) + "px";
+
+        item.style.animationDuration =
+            (2.5 + Math.random() * 3) + "s";
+
+        document.body.appendChild(item);
+
+        setTimeout(
+            function() {
+
+                item.remove();
+
+            },
+            6000
+        );
+    }
+}
+
+</script>
+
+</body>
+</html>
