@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Tanuja Didi &amp; Riya Didi | Luxury Birthday Celebration</title>
 
+  <!-- Luxury Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -42,12 +43,14 @@
     .font-cinzel { font-family: 'Cinzel', serif; }
     .font-cormorant { font-family: 'Cormorant Garamond', serif; }
 
+    /* Luxury Gold Foil Text */
     .gold-gradient-text {
       background: linear-gradient(135deg, #f7e7ce 0%, #ffd700 35%, #fff2b2 55%, #aa7c11 85%, #d4af37 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
+    /* Top Navigation Bar */
     header {
       position: relative;
       z-index: 30;
@@ -122,6 +125,7 @@
       transform: scale(1.05);
     }
 
+    /* Buttons */
     .btn-gold {
       background: linear-gradient(135deg, #ffd700 0%, #f7e7ce 50%, #d4af37 100%);
       color: #0a0608;
@@ -163,6 +167,7 @@
       border-color: var(--gold-bright);
     }
 
+    /* Main Container */
     main {
       position: relative;
       z-index: 20;
@@ -178,6 +183,7 @@
       text-align: center;
     }
 
+    /* 3D Perspective Box */
     .perspective-box {
       perspective: 1000px;
       width: 280px;
@@ -269,15 +275,10 @@
       visibility: visible;
     }
 
+    /* Candle Animation */
     @keyframes flicker {
-      0%, 100% {
-        transform: scale(1) rotate(-1deg);
-        filter: drop-shadow(0 0 12px rgba(255, 170, 0, 0.85));
-      }
-      50% {
-        transform: scale(1.05, 1.08) rotate(1.5deg);
-        filter: drop-shadow(0 0 18px rgba(255, 190, 40, 0.95));
-      }
+      0%, 100% { transform: scale(1) rotate(-1deg); filter: drop-shadow(0 0 12px rgba(255, 170, 0, 0.85)); }
+      50% { transform: scale(1.05, 1.08) rotate(1.5deg); filter: drop-shadow(0 0 18px rgba(255, 190, 40, 0.95)); }
     }
 
     .flame {
@@ -289,6 +290,7 @@
       margin: 0 auto;
     }
 
+    /* Footer Controls */
     footer {
       position: relative;
       z-index: 30;
@@ -300,7 +302,7 @@
       border-top: 1px solid rgba(59, 7, 19, 0.8);
     }
 
-    /* Cake, photo gallery and effects */
+    /* Interactive celebration upgrades */
     .cake-stage { width:min(560px, 94vw); margin:1.4rem auto 1rem; position:relative; height:300px; display:flex; align-items:flex-end; justify-content:center; }
     .cake-board { position:absolute; bottom:18px; width:330px; max-width:88vw; height:24px; border-radius:50%; background:linear-gradient(180deg,#f7e7ce,#a87925 55%,#3a1b12); box-shadow:0 15px 28px #0009; }
     .cake-body { position:absolute; bottom:40px; width:270px; height:150px; max-width:76vw; transition:transform 1s ease; filter:drop-shadow(0 16px 15px #0009); }
@@ -310,9 +312,7 @@
     .cake-topper { position:absolute; bottom:92px; left:50%; transform:translateX(-50%); width:190px; height:44px; border-radius:50%; background:linear-gradient(180deg,#fff0df,#d9a18f 75%,#7b2638); border:2px solid #d4af37; }
     .cake-berries { position:absolute; z-index:2; bottom:115px; left:50%; transform:translateX(-50%); font-size:25px; white-space:nowrap; filter:drop-shadow(0 2px 3px #0008); }
     .cake-candle { position:absolute; z-index:3; bottom:151px; left:50%; width:9px; height:42px; transform:translateX(-50%); border-radius:4px; background:repeating-linear-gradient(45deg,#fff0d0 0 7px,#b8862c 7px 13px); }
-    .cake-candle[style*='--flame-off'] { opacity:.35; }
-    .cake-candle[style*='--flame-off']:before { display:none; }
-    .cake-candle:before { content:""; position:absolute; width:13px; height:22px; left:-2px; top:-21px; border-radius:50% 50% 45% 45%; background:radial-gradient(ellipse at 50% 70%,#fff 0 10%,#fff19a 30%,#ff9d28 65%,transparent 72%); animation:flicker .8s infinite alternate; filter:drop-shadow(0 0 9px #ffb52e); }
+    .cake-candle[style*='--flame-off'] { opacity:.35; } .cake-candle[style*='--flame-off']:before { display:none; } .cake-candle:before { content:""; position:absolute; width:13px; height:22px; left:-2px; top:-21px; border-radius:50% 50% 45% 45%; background:radial-gradient(ellipse at 50% 70%,#fff 0 10%,#fff19a 30%,#ff9d28 65%,transparent 72%); animation:flicker .8s infinite alternate; filter:drop-shadow(0 0 9px #ffb52e); }
     .cake-cut-line { position:absolute; z-index:5; bottom:48px; left:50%; height:118px; width:3px; background:#fff3d5; opacity:0; transform:rotate(24deg); box-shadow:0 0 12px #ffd700; }
     .cake-slice { position:absolute; z-index:4; bottom:42px; left:calc(50% + 40px); width:90px; height:82px; opacity:0; transform:translate(0,0) rotate(0); transition:all 1s cubic-bezier(.2,.8,.2,1); clip-path:polygon(0 0,100% 25%,100% 100%,0 100%); background:linear-gradient(180deg,#f7d8c5 0 22%,#7e2037 23% 55%,#f1c7ac 56% 72%,#4c1020 73%); border:2px solid #d4af37; }
     .cake-stage.cut .cake-cut-line { opacity:1; animation:knifeCut .7s ease forwards; }
@@ -329,10 +329,7 @@
     .photo-card h3 { font-family:'Cinzel',serif; color:#f7e7ce; margin:.8rem 0 .25rem; font-size:1rem; }
     .photo-note { color:var(--text-muted); font-size:.75rem; }
     #fireworkCanvas { position:fixed; inset:0; z-index:25; pointer-events:none; }
-
-    .finale-glow {
-      text-shadow:0 0 18px #ffd70088,0 0 42px #e65c9c66;
-    }
+    .finale-glow { text-shadow:0 0 18px #ffd70088,0 0 42px #e65c9c66; }
 
     @media(max-width:760px) {
       header { flex-wrap:wrap; justify-content:center; gap:.75rem; padding:.85rem .75rem; }
@@ -352,63 +349,18 @@
       .btn-gold,.btn-burgundy { padding:.7rem 1rem; font-size:.68rem; }
     }
 
-    /* Champagne glasses clinking animation */
-    .toast-animation {
-      display:none;
-      position:relative;
-      width:min(100%,420px);
-      height:190px;
-      margin:1.5rem auto 0;
-      overflow:hidden;
-    }
-
+    /* Champagne toast animation */
+    .toast-animation { display:none; position:relative; width:min(100%,420px); height:190px; margin:1.5rem auto 0; overflow:hidden; }
     .toast-animation.show { display:block; }
-
-    .toast-glass {
-      position:absolute;
-      top:32px;
-      font-size:5.2rem;
-      line-height:1;
-      filter:drop-shadow(0 8px 12px #0008);
-    }
-
+    .toast-glass { position:absolute; top:32px; font-size:5.2rem; line-height:1; filter:drop-shadow(0 8px 12px #0008); }
     .toast-glass.left { left:calc(50% - 112px); }
     .toast-glass.right { right:calc(50% - 112px); transform:scaleX(-1); }
-
-    .toast-animation.clinking .toast-glass.left {
-      animation:glassLeft .75s ease-in-out;
-    }
-
-    .toast-animation.clinking .toast-glass.right {
-      animation:glassRight .75s ease-in-out;
-    }
-
-    .toast-spark {
-      position:absolute;
-      left:50%;
-      top:35px;
-      transform:translateX(-50%) scale(.2);
-      opacity:0;
-      color:#ffe58a;
-      font-size:2rem;
-      text-shadow:0 0 18px #ffd700;
-    }
-
-    .toast-animation.clinking .toast-spark {
-      animation:sparkPop .9s ease-out .48s both;
-    }
-
-    .toast-message {
-      color:var(--gold-bright);
-      font-family:Georgia,serif;
-      font-style:italic;
-      margin-top:0;
-      opacity:0;
-    }
-
-    .toast-message.show {
-      animation:toastFade .6s ease .45s forwards;
-    }
+    .toast-animation.clinking .toast-glass.left { animation:glassLeft .75s ease-in-out; }
+    .toast-animation.clinking .toast-glass.right { animation:glassRight .75s ease-in-out; }
+    .toast-spark { position:absolute; left:50%; top:35px; transform:translateX(-50%) scale(.2); opacity:0; color:#ffe58a; font-size:2rem; text-shadow:0 0 18px #ffd700; }
+    .toast-animation.clinking .toast-spark { animation:sparkPop .9s ease-out .48s both; }
+    .toast-message { color:var(--gold-bright); font-family:Georgia,serif; font-style:italic; margin-top:0; opacity:0; }
+    .toast-message.show { animation:toastFade .6s ease .45s forwards; }
 
     @keyframes glassLeft {
       0%,100% { transform:translateX(0) rotate(0); }
